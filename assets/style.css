@@ -13,6 +13,18 @@ header ul {
     padding: 12px 5px 0 0;
 }
 
+#multiple-choice li {
+    background-color: blueviolet;
+    padding:5px;
+    margin:10px;
+
+}
+
+#multiple-choice li:hover {
+    background-color: aqua;
+    cursor: pointer;
+}
+
 h1 {
     font-size: 50px;
    

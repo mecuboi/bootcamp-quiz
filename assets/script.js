@@ -8,7 +8,7 @@ var questions = [
         answer: 'a. Is this the answer',
     },
     {
-        question: 'this is the question?',
+        question: 'this is the question 2?',
         mcq1: 'a',
         mcq2: 'b',
         mcq3: 'c',
@@ -16,7 +16,7 @@ var questions = [
         answer: 'b',
     },
     {
-        question: 'this is the question?',
+        question: 'this is the question 3?',
         mcq1: 'a',
         mcq2: 'b',
         mcq3: 'c',
@@ -24,7 +24,7 @@ var questions = [
         answer: 'c',
     },
     {
-        question: 'this is the question?',
+        question: 'this is the question 4?',
         mcq1: 'a',
         mcq2: 'b',
         mcq3: 'c',
@@ -32,7 +32,7 @@ var questions = [
         answer: 'd',
     },
     {
-        question: 'this is the question?',
+        question: 'this is the question 5?',
         mcq1: 'a',
         mcq2: 'b',
         mcq3: 'c',
@@ -54,14 +54,12 @@ var multipleChoice = document.getElementById('multiple-choice')
 var startButton = document.getElementById('start-button');
 
 function promptQuestions() {
-    
 
-    if (welcome.classList != hide) {
-        welcome.classList.add('hide')
-    }
-    if (startButton.classList != hide) {
-        startButton.classList.add('hide');
-    }
+    if (i < questions.length) {
+    
+    welcome.classList.add('hide')
+    startButton.classList.add('hide');
+    
     questionPrompt.textContent = questions[i].question;
     choice1.textContent = questions[i].mcq1;
     choice2.textContent = questions[i].mcq2;
@@ -73,26 +71,36 @@ function promptQuestions() {
         answeringQuestion();
     
     }
-    
+    else {
+        i = 4;
+        console.log('done');
+        return;
+    }
+}   
 
 
 function answeringQuestion() {
     multipleChoice.addEventListener('click', function(event) { 
 
         var element = event.target;
-        var elementValue = element.getAttribute('li');
+        var elementValue = element.textContent;
 
-        if(elementValue === questions[i].answer){
+        if(elementValue == questions[i].answer){
         console.log('Correct');
-        } else {
-            console.log('incorrect')
+        score = score + 100;
         }
         
+        storingScore()  
     }
     )
 }
 
+function storingScore() {
+    i = i + 1;
 
+
+    promptQuestions();
+}
 
 
 
