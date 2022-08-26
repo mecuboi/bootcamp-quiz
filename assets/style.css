@@ -1,8 +1,16 @@
 
 
 header {
+    width:100%;
+    height: 50px;
+    background-color: coral;
+}
+
+header ul {
     display: flex;
     justify-content: space-between;
+    list-style-type: none;
+    padding: 12px 5px 0 0;
 }
 
 h1 {
