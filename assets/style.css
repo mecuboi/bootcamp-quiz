@@ -1,21 +1,36 @@
 
 
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
 h1 {
     font-size: 50px;
-    text-align: center;
+   
 }
 
 h2 {
     font-size: 25px;
+  
+}
+
+.title {
     text-align: center;
 }
 
-
+.container {
+    
+}
 
 #multiple-choice {
     list-style-type: none;
 }
 
 #quiz-button {
-    
+    margin: 0 auto;
+}
+
+.hide {
+    display: none;
 }
