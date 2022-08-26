@@ -47,12 +47,20 @@ var choice2 = document.getElementById('q2a');
 var choice3 = document.getElementById('q3a');
 var choice4 = document.getElementById('q4a');
 
+var welcome = document.getElementById('welcome')
+
 var score = 0;
+var i = 0;
 
 var startButton = document.getElementById('start-button');
 
 function promptQuestions() {
-    console.log('success');
+    welcome.classList.add('hide');
+    questionPrompt.textContent = questions[i].question;
+    choice1.textContent = questions[i].mcq1;
+    choice2.textContent = questions[i].mcq2;
+    choice3.textContent = questions[i].mcq3;
+    choice4.textContent = questions[i].mcq4;
 }
 
 
