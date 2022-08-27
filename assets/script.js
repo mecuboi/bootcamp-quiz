@@ -54,10 +54,10 @@ var multipleChoice = document.getElementById('multiple-choice')
 var startButton = document.getElementById('start-button');
 
 function promptQuestions() {
-
+    console.log(i);
     if (i < questions.length) {
     
-    welcome.classList.add('hide')
+    welcome.classList.add('hide');
     startButton.classList.add('hide');
     
     questionPrompt.textContent = questions[i].question;
@@ -65,45 +65,51 @@ function promptQuestions() {
     choice2.textContent = questions[i].mcq2;
     choice3.textContent = questions[i].mcq3;
     choice4.textContent = questions[i].mcq4;
-
+    
     choicesPrompt.classList.remove('hide');
 
-        answeringQuestion();
-    
+    answeringQuestion();
     }
+
     else {
-        i = 4;
         console.log('done');
         return;
     }
-}   
+    
+    
+}
 
 
 function answeringQuestion() {
     multipleChoice.addEventListener('click', function(event) { 
+        // event.preventDefault();
+        // event.stopPropagation();
+        var element ='';
+        var elementValue ='';
+        element = event.target;
+        elementValue = element.textContent;
 
-        var element = event.target;
-        var elementValue = element.textContent;
-
-        if(elementValue == questions[i].answer){
+        
+        if(elementValue === questions[i].answer){
         console.log('Correct');
         score = score + 100;
+        storingScore()
+        } else {
+            console.log('incorrect');
+            storingScore();
+
         }
-        
-        storingScore()  
-    }
-    )
+        console.log('score: ' + score);
+    })
+    
 }
 
 function storingScore() {
-    i = i + 1;
-
-
+    
+    i++
     promptQuestions();
+    
 }
-
-
-
 
 
 
