@@ -64,9 +64,14 @@ h2 {
 
 }
 
-.row p{
+#play-again-button {
+    text-decoration: none;
+    color: black;
+}
+
+/* .row p{
     border: solid red 1px;
     padding: 10px;
     margin: 10px;
 
-}
+} */

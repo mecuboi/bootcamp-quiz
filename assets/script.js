@@ -59,6 +59,9 @@ var timerCount;
 var userNameEl = document.getElementById('user-name')
 var saveBtn = document.getElementById('save-score')
 var highScoreBtn = document.getElementById('highscore')
+var updatedScore = []
+var existingScors =[]
+var row = document.querySelector('.row');
 
 function startGame() {
     welcome.classList.add('hide');
@@ -118,7 +121,7 @@ allChoices.forEach((choice) => {
         console.log('Correct');
         } else {
             console.log('incorrect');   
-            secondsLeft -= 5;
+            secondsLeft -= 10;
         }
         console.log(element)
         console.log(elementValue) 
@@ -138,15 +141,31 @@ function showingScore() {
 }
 
 function storeScore(){
-    // var userName = userNameEl.value;
-    var existingScores = JSON.parse(localStorage.getItem('score')) || {};
-    var updatedScore = {...existingScores,[ userNameEl.value]: secondsLeft};
+    existingScores = JSON.parse(localStorage.getItem('score')) || {};
+    var updatedScore = {...existingScores, [ userNameEl.value]: secondsLeft};
     localStorage.setItem('score',JSON.stringify(updatedScore) );
-    questionPrompt.textContent = 'Your score has been saved in the Highscore List: ';
-    questionPrompt.classList.remove('hide');
-    gameOver.classList.add('hide');
-    questionPrompt.appendChild(highScoreBtn);
+    window.location.href = './highscore.html';
 }
+
+function renderHighscore() {
+
+    // todoList.innerHTML = "";
+    // todoCountSpan.textContent = todos.length;
+  
+    // Render a new li for each todo
+    // for (var i = 0; i < existingScores.length; i++) {
+    //   var todo = todos[i];
+  
+      var li = document.createElement("li");
+      li.textContent = 'testing';
+    //   li.setAttribute("data-index", i);
+  
+    //   var button = document.createElement("button");
+    //   button.textContent = "Complete ✔️";
+      row.appendChild(li);
+    // }
+  }
+
 
 saveBtn.addEventListener('click',storeScore);
 startButton.addEventListener('click',startGame);
