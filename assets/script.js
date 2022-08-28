@@ -51,8 +51,9 @@ var welcome = document.getElementById('welcome');
 var i = 0;
 var multipleChoice = document.getElementById('multiple-choice')
 var startButton = document.getElementById('start-button');
-var secondsLeft = 61;
+var secondsLeft = 60;
 var timer = document.getElementById('timer');
+var allChoices = document.querySelectorAll('.choices')
 
 function startGame() {
     welcome.classList.add('hide');
@@ -72,24 +73,26 @@ function promptQuestions() {
         choice3.textContent = questions[i].mcq3;
         choice4.textContent = questions[i].mcq4;
 
-        answeringQuestion();
     }
     else {
         console.log('done');
         storingScore();
+        timer.textContent = '';
         return;
     }
 }
 
+
+
 function startTimer() {
-    
+    timer.textContent = secondsLeft + ' seconds left';
     var timerCount = setInterval (function() {
         secondsLeft--;
         timer.textContent = secondsLeft + ' seconds left';
         if(secondsLeft === 1) {
             timer.textContent = secondsLeft + ' second left';
         }
-        else if (secondsLeft === 0) {
+        else if (secondsLeft <= 0) {
             clearInterval(timerCount);
             choicesPrompt.classList.add('hide');
             questionPrompt.textContent = 'GAME OVER';
@@ -98,10 +101,8 @@ function startTimer() {
     }, 1000)
 }
 
-function answeringQuestion() {
-    multipleChoice.addEventListener('click', function(event) { 
-        event.preventDefault();
-        event.stopPropagation();
+allChoices.forEach((choice) => {
+    choice.addEventListener('click', function(event) { 
         var element ='';
         var elementValue ='';
         element = event.target;
@@ -111,15 +112,15 @@ function answeringQuestion() {
         console.log('Correct');
         } else {
             console.log('incorrect');   
+            secondsLeft -= 5;
         }
         console.log(element)
         console.log(elementValue) 
         i++;
         promptQuestions();
     })
-    
-        
-}
+});
+   
 
 function storingScore() {
     localStorage.setItem("score",secondsLeft)
@@ -134,4 +135,4 @@ function storingScore() {
 
 
 
-startButton.addEventListener('click',promptQuestions);
+startButton.addEventListener('click',startGame);
