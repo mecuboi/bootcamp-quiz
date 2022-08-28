@@ -1,43 +1,43 @@
 var questions = [
     {
-        question: 'this is the question?',
-        mcq1: 'a. Is this the answer',
-        mcq2: 'b. This is the answer',
-        mcq3: 'c. who thinks this',
-        mcq4: 'd. joking',
-        answer: 'a. Is this the answer',
+        question: 'What is the smallest number below?',
+        mcq1: 'a. 1.99992734',
+        mcq2: 'b. 300867',
+        mcq3: 'c. 0.00002342',
+        mcq4: 'd. -0.0628733',
+        answer: 'd. -0.0628733',
     },
     {
-        question: 'this is the question 2?',
-        mcq1: 'a',
-        mcq2: 'b',
-        mcq3: 'c2',
-        mcq4: 'd',
-        answer: 'b',
+        question: 'What is the essential gas for human to breathe?',
+        mcq1: 'a. Carbon Monoxide',
+        mcq2: 'b. Oxygen',
+        mcq3: 'c. Hydrogen',
+        mcq4: 'd. Carbon Dioxide',
+        answer: 'b. Oxygen',
     },
     {
-        question: 'this is the question 3?',
-        mcq1: 'a',
-        mcq2: 'b',
-        mcq3: 'c3',
-        mcq4: 'd',
-        answer: 'c',
+        question: 'What is the largest known land animal',
+        mcq1: 'a. Elephant',
+        mcq2: 'b. Giraffe',
+        mcq3: 'c. Whale',
+        mcq4: 'd. Hippoppotamus',
+        answer: 'a. Elephant',
     },
     {
-        question: 'this is the question 4?',
-        mcq1: 'a',
-        mcq2: 'b',
-        mcq3: 'c',
-        mcq4: 'd',
-        answer: 'd',
+        question: 'How many hearts does an octopus have?',
+        mcq1: 'a. 9',
+        mcq2: 'b. 3',
+        mcq3: 'c. 7',
+        mcq4: 'd. 1',
+        answer: 'b. 3',
     },
     {
-        question: 'this is the question 5?',
-        mcq1: 'a',
-        mcq2: 'b',
-        mcq3: 'c',
-        mcq4: 'd',
-        answer: 'b',
+        question: 'From what tree do acorns come from?',
+        mcq1: 'a. Pine tree',
+        mcq2: 'b. Acorn tree',
+        mcq3: 'c. Oak Tree',
+        mcq4: 'd. Maple Tree',
+        answer: 'c. Oak Tree',
     }
 ]
 
@@ -141,6 +141,9 @@ function storeScore(){
     var existingScores = JSON.parse(localStorage.getItem('score')) || {};
     var updatedScore = {...existingScores,[ userNameEl.value]: secondsLeft};
     localStorage.setItem('score',JSON.stringify(updatedScore) );
+    questionPrompt.textContent = 'Your score has been saved in the Highscore List';
+    questionPrompt.classList.remove('hide');
+    startButton.classList.add('hide');
 
 }
 
