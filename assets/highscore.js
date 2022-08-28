@@ -13,27 +13,12 @@ function renderHighscore() {
     //   var todo = todos[i];
   
       var li = document.createElement("li");
-      li.textContent = existingScores.name +"  "+ existingScores.score;
+      li.textContent = 'Name: '+existingScores.name +" "+ "-" + " "+ 'Score: ' + existingScores.score;
       li.classList.add('high-score-list');
   
     //   var button = document.createElement("button");
     //   button.textContent = "Complete ✔️";
       row.appendChild(li);
-    // }
-  }
-  
-renderHighscore();
+}
 
-//   // This function is being called below and will run when the page loads.
-//   function init() {
-//     // Get stored todos from localStorage
-//     var storedTodos = JSON.parse(localStorage.getItem("todos"));
-  
-//     // If todos were retrieved from localStorage, update the todos array to it
-//     if (storedTodos !== null) {
-//       todos = storedTodos;
-//     }
-  
-//     // This is a helper function that will render todos to the DOM
-//     renderTodos();
-//   }
+renderHighscore();

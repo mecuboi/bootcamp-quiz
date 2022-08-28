@@ -60,7 +60,6 @@ var userNameEl = document.getElementById('user-name')
 var saveBtn = document.getElementById('save-score')
 var highScoreBtn = document.getElementById('highscore')
 var updatedScore = []
-var existingScors =[]
 var row = document.querySelector('.row');
 
 function startGame() {
@@ -141,8 +140,9 @@ function showingScore() {
 }
 
 function storeScore(){
-    existingScores = JSON.parse(localStorage.getItem('score')) || {};
-    var updatedScore = {...existingScores, name: userNameEl.value, score: secondsLeft};
+    var existingScores = JSON.parse(localStorage.getItem('score')) || {};
+    var userName = userNameEl.value.toUpperCase();
+    var updatedScore = {...existingScores, name: userName, score: secondsLeft};
     localStorage.setItem('score',JSON.stringify(updatedScore) );
     window.location.href = './highscore.html';
     renderHighscore(); 
