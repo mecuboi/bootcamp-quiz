@@ -11,7 +11,7 @@ var questions = [
         question: 'this is the question 2?',
         mcq1: 'a',
         mcq2: 'b',
-        mcq3: 'c',
+        mcq3: 'c2',
         mcq4: 'd',
         answer: 'b',
     },
@@ -19,7 +19,7 @@ var questions = [
         question: 'this is the question 3?',
         mcq1: 'a',
         mcq2: 'b',
-        mcq3: 'c',
+        mcq3: 'c3',
         mcq4: 'd',
         answer: 'c',
     },
@@ -48,68 +48,89 @@ var choice3 = document.getElementById('q3a');
 var choice4 = document.getElementById('q4a');
 var choicesPrompt = document.getElementById ('choices-prompt');
 var welcome = document.getElementById('welcome');
-var score = 0;
 var i = 0;
 var multipleChoice = document.getElementById('multiple-choice')
 var startButton = document.getElementById('start-button');
+var secondsLeft = 61;
+var timer = document.getElementById('timer');
 
-function promptQuestions() {
-    console.log(i);
-    if (i < questions.length) {
-    
+function startGame() {
     welcome.classList.add('hide');
     startButton.classList.add('hide');
-    
-    questionPrompt.textContent = questions[i].question;
-    choice1.textContent = questions[i].mcq1;
-    choice2.textContent = questions[i].mcq2;
-    choice3.textContent = questions[i].mcq3;
-    choice4.textContent = questions[i].mcq4;
-    
     choicesPrompt.classList.remove('hide');
-
-    answeringQuestion();
-    }
-
-    else {
-        console.log('done');
-        return;
-    }
-    
-    
+    startTimer();
+    promptQuestions();
 }
 
+function promptQuestions() {   
+
+    if (i < questions.length) {
+
+        questionPrompt.textContent = questions[i].question;
+        choice1.textContent = questions[i].mcq1;
+        choice2.textContent = questions[i].mcq2;
+        choice3.textContent = questions[i].mcq3;
+        choice4.textContent = questions[i].mcq4;
+
+        answeringQuestion();
+    }
+    else {
+        console.log('done');
+        storingScore();
+        return;
+    }
+}
+
+function startTimer() {
+    
+    var timerCount = setInterval (function() {
+        secondsLeft--;
+        timer.textContent = secondsLeft + ' seconds left';
+        if(secondsLeft === 1) {
+            timer.textContent = secondsLeft + ' second left';
+        }
+        else if (secondsLeft === 0) {
+            clearInterval(timerCount);
+            choicesPrompt.classList.add('hide');
+            questionPrompt.textContent = 'GAME OVER';
+            timer.textContent = '';
+        }
+    }, 1000)
+}
 
 function answeringQuestion() {
     multipleChoice.addEventListener('click', function(event) { 
-        // event.preventDefault();
-        // event.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
         var element ='';
         var elementValue ='';
         element = event.target;
         elementValue = element.textContent;
 
-        
         if(elementValue === questions[i].answer){
         console.log('Correct');
-        score = score + 100;
-        storingScore()
         } else {
-            console.log('incorrect');
-            storingScore();
-
+            console.log('incorrect');   
         }
-        console.log('score: ' + score);
+        console.log(element)
+        console.log(elementValue) 
+        i++;
+        promptQuestions();
     })
     
+        
 }
 
 function storingScore() {
-    
-    i++
-    promptQuestions();
-    
+    localStorage.setItem("score",secondsLeft)
+
+    var highScore = localStorage.getItem('score');
+    console.log(highScore);
+    questionPrompt.textContent = 'Your Score is ' + highScore;
+    timer.textContent = '';
+    choicesPrompt.classList.add('hide');
 }
+
 
 
 
