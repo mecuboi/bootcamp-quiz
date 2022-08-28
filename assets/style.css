@@ -69,9 +69,11 @@ h2 {
     color: black;
 }
 
-/* .row p{
-    border: solid red 1px;
+
+
+.row {
     padding: 10px;
     margin: 10px;
-
-} */
+    list-style-type: none;
+    font-size: 30px;
+}

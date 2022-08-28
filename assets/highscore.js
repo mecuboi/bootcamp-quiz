@@ -1,16 +1,7 @@
-// var highScoreList = document.getElementById('highscore-list')
 
-// var existingScores = JSON.parse(localStorage.getItem('score')) || {};
-// var updatedScore = {...existingScores,[ userNameEl.value]: secondsLeft};
-
-// function renderHighscore () {
-//     var rowEl = document.createElement('div');
-//     rowEl.classList.add('row');
-//     rowEl.textContent = existingScores;
-//     highScoreList.appendChild(rowEl);
-// }
-
-// renderHighscore();
+var row = document.querySelector('.row');
+var existingScores = JSON.parse(localStorage.getItem('score')) || {};
+var userNameEl = document.getElementById('user-name')
 
 function renderHighscore() {
 
@@ -18,31 +9,31 @@ function renderHighscore() {
     // todoCountSpan.textContent = todos.length;
   
     // Render a new li for each todo
-    for (var i = 0; i < existingScores.length; i++) {
+    // for (var i = 0; i < existingScores.length; i++) {
     //   var todo = todos[i];
   
       var li = document.createElement("li");
-      li.textContent = existingScores[i];
-    //   li.setAttribute("data-index", i);
+      li.textContent = existingScores.name +"  "+ existingScores.score;
+      li.classList.add('high-score-list');
   
     //   var button = document.createElement("button");
     //   button.textContent = "Complete ✔️";
       row.appendChild(li);
-    }
+    // }
   }
   
-renderHighscore
+renderHighscore();
 
-  // This function is being called below and will run when the page loads.
-  function init() {
-    // Get stored todos from localStorage
-    var storedTodos = JSON.parse(localStorage.getItem("todos"));
+//   // This function is being called below and will run when the page loads.
+//   function init() {
+//     // Get stored todos from localStorage
+//     var storedTodos = JSON.parse(localStorage.getItem("todos"));
   
-    // If todos were retrieved from localStorage, update the todos array to it
-    if (storedTodos !== null) {
-      todos = storedTodos;
-    }
+//     // If todos were retrieved from localStorage, update the todos array to it
+//     if (storedTodos !== null) {
+//       todos = storedTodos;
+//     }
   
-    // This is a helper function that will render todos to the DOM
-    renderTodos();
-  }
+//     // This is a helper function that will render todos to the DOM
+//     renderTodos();
+//   }

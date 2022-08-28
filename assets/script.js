@@ -142,30 +142,12 @@ function showingScore() {
 
 function storeScore(){
     existingScores = JSON.parse(localStorage.getItem('score')) || {};
-    var updatedScore = {...existingScores, [ userNameEl.value]: secondsLeft};
+    var updatedScore = {...existingScores, name: userNameEl.value, score: secondsLeft};
     localStorage.setItem('score',JSON.stringify(updatedScore) );
     window.location.href = './highscore.html';
+    renderHighscore(); 
 }
 
-function renderHighscore() {
 
-    // todoList.innerHTML = "";
-    // todoCountSpan.textContent = todos.length;
-  
-    // Render a new li for each todo
-    // for (var i = 0; i < existingScores.length; i++) {
-    //   var todo = todos[i];
-  
-      var li = document.createElement("li");
-      li.textContent = 'testing';
-    //   li.setAttribute("data-index", i);
-  
-    //   var button = document.createElement("button");
-    //   button.textContent = "Complete ✔️";
-      row.appendChild(li);
-    // }
-  }
-
-
-saveBtn.addEventListener('click',storeScore);
-startButton.addEventListener('click',startGame);
+  saveBtn.addEventListener('click',storeScore);
+  startButton.addEventListener('click',startGame);
