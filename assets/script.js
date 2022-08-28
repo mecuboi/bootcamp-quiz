@@ -54,6 +54,10 @@ var startButton = document.getElementById('start-button');
 var secondsLeft = 60;
 var timer = document.getElementById('timer');
 var allChoices = document.querySelectorAll('.choices')
+var gameOver = document.querySelector('.game-over')
+var timerCount;
+var userNameEl = document.getElementById('user-name')
+var saveBtn = document.getElementById('save-score')
 
 function startGame() {
     welcome.classList.add('hide');
@@ -76,8 +80,9 @@ function promptQuestions() {
     }
     else {
         console.log('done');
-        storingScore();
-        timer.textContent = '';
+        showingScore();
+        gameOver.classList.remove('hide');
+        clearInterval(timerCount);
         return;
     }
 }
@@ -86,7 +91,7 @@ function promptQuestions() {
 
 function startTimer() {
     timer.textContent = secondsLeft + ' seconds left';
-    var timerCount = setInterval (function() {
+    timerCount = setInterval (function() {
         secondsLeft--;
         timer.textContent = secondsLeft + ' seconds left';
         if(secondsLeft === 1) {
@@ -122,17 +127,22 @@ allChoices.forEach((choice) => {
 });
    
 
-function storingScore() {
-    localStorage.setItem("score",secondsLeft)
-
-    var highScore = localStorage.getItem('score');
-    console.log(highScore);
-    questionPrompt.textContent = 'Your Score is ' + highScore;
+function showingScore() {
+    // console.log(highScore);
+    questionPrompt.textContent = 'Your Score is ' + secondsLeft;
     timer.textContent = '';
     choicesPrompt.classList.add('hide');
+
+   
 }
 
+function storeScore(){
+    // var userName = userNameEl.value;
+    var existingScores = JSON.parse(localStorage.getItem('score')) || {};
+    var updatedScore = {...existingScores,[ userNameEl.value]: secondsLeft};
+    localStorage.setItem('score',JSON.stringify(updatedScore) );
 
+}
 
-
+saveBtn.addEventListener('click',storeScore);
 startButton.addEventListener('click',startGame);
