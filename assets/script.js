@@ -58,6 +58,7 @@ var gameOver = document.querySelector('.game-over')
 var timerCount;
 var userNameEl = document.getElementById('user-name')
 var saveBtn = document.getElementById('save-score')
+var highScoreBtn = document.getElementById('highscore')
 
 function startGame() {
     welcome.classList.add('hide');
@@ -141,10 +142,10 @@ function storeScore(){
     var existingScores = JSON.parse(localStorage.getItem('score')) || {};
     var updatedScore = {...existingScores,[ userNameEl.value]: secondsLeft};
     localStorage.setItem('score',JSON.stringify(updatedScore) );
-    questionPrompt.textContent = 'Your score has been saved in the Highscore List';
+    questionPrompt.textContent = 'Your score has been saved in the Highscore List: ';
     questionPrompt.classList.remove('hide');
-    startButton.classList.add('hide');
-
+    gameOver.classList.add('hide');
+    questionPrompt.appendChild(highScoreBtn);
 }
 
 saveBtn.addEventListener('click',storeScore);
